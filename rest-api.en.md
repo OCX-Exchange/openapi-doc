@@ -17,9 +17,9 @@ OCX Exchange APIs offers two kinds of API accessibility:
 
 Difference list as below:
 
-| item | Public API | Private API                                         |
-| ---- | ---------- | --------------------------------------------- ----- |
-| Authentication  | No           | Required                               |
+| item | Public API | Private API                                        |
+| ---- | ---------- | -------------------------------------------------- |
+| Authentication  | No           | Required                              |
 | Constraint      | No           | One API request per second. Contact OCX Exchange if you need more |
 | Usage condition | Use Directly | Get API token(access_key/secret_key) from application management section of offical website |
 
