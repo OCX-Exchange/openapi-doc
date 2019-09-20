@@ -144,7 +144,7 @@ JSON Response
  }
 ```
 
-3. Get market price depth `GET /api/v2/depth?market_code=ethbtc`
+3. Get market price depth `GET /api/v2/depth?market_code=ethbtc&limit=20`
 
 JSON Response
 
@@ -168,6 +168,7 @@ Supported query parameters:
 
 | param       | key      | required | Note   |
 | ----------- | -------- | -------- | ------ |
+| market      | string   | No       |        |
 | state | string    | No       | wait, done, cancel |
 | limit | integer   | No       |             |
 | page  | integer   | No       |             |
@@ -291,6 +292,12 @@ JSON Response
 
 8. Cancel batch orders `POST /api/v2/orders/clear`
 
+Parameters:
+
+| Key           | Type     | Required | Note      |
+| -----------   | -------- | -------- | --------- |
+| market_code   | string   | NO       | All market orders will be canceled without market_code |
+
 JSON Response
 
 ```json
@@ -317,7 +324,14 @@ JSON Response
 }
 ```
 
-9. Get you assets `GET /api/v2/accounts`
+9. Get your assets `GET /api/v2/accounts`
+
+Parameters:
+
+| Key           | Type     | Required | Note      |
+| -----------   | -------- | -------- | --------- |
+| currency_code | string   | NO       |           |
+
 
 JSON Response
 

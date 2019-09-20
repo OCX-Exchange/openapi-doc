@@ -58,7 +58,7 @@ OCX开发者接口包含两类API
 `POST /api/v2/orders/:order_id/cancel`
 
 批量撤单
-`POST /api/v2/orders/clear`
+`POST /api/v2/orders/clear?market_code=btcusdt`
 
 
 ### 如何签名 (验证)
@@ -237,9 +237,10 @@ GET https://openapi.ocx.com/api/v2/markets
 * URL `https://openapi.ocx.com/api/v2/depth`
 * 请求参数
 
-| 参数名      | 参数类型 | 是否必须 | 解释   |
+| 参数名       | 参数类型 | 是否必须 | 解释   |
 | ----------- | -------- | -------- | ------ |
-| market_code | String   | 是       | 交易对 |
+| market_code | string   | 是        | 交易对 |
+| limit       | integer  | 否        | 默认 20 |
 
 * 请求示例
 
@@ -269,11 +270,12 @@ PS: 具体详情请查看 `获取个人订单`接口
 
 4. `GET /api/v2/orders`  获取个人订单
 
-* URL `https://openapi.ocx.com/api/v2/orders`
+* URL `https://openapi.ocx.com/api/v2/orders?market=ethbtc`
 * 请求参数
 
 | 参数名      | 参数类型 | 是否必须 | 解释   |
-| ----------- | -------- | -------- | ------ |
+| -----------| -------- | -------- | ------ |
+| market     | String   | No    | 市场代码    |
 | state | String   | No        | 状态 (wait, done, cancel) |
 | limit | Integer   | No       | 每页条数 |
 | page  | Integer   | No       | 页数 |
@@ -536,6 +538,13 @@ POST https://openapi.ocx.com/api/v2/orders/clear
 9. `GET /api/v2/accounts`  个人资产
 
 * URL `https://openapi.ocx.com/api/v2/accounts`
+* 请求参数
+
+| 字段  | 类型    | 是否必须 | 解释         |
+| ---- | ------- | -------- | ---------  |
+| currency_code  | String | 否 | 某个币种的持仓 |
+
+
 * 请求示例
 
 ```json
