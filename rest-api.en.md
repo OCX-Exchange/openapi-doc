@@ -35,6 +35,8 @@ Difference list as below:
 
 5. Get single market ticker `GET /api/v2/tickers/ocxeth`
 
+6. Get orderbook of specific market `GET /api/v2/depth?market_code=ethbtc`
+
 
 ### Private APIs
 
