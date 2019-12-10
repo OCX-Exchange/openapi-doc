@@ -573,3 +573,83 @@ GET https://openapi.ocx.com/api/v2/accounts
 | locked        | decimal | 被锁金额 |
 
 PS: `balance`为账户的余额， 不包含用户`locked`的金额.
+
+10. `GET /api/v2/accounts/all`  个人全部资产
+
+* URL `https://openapi.ocx.com/api/v2/accounts/all`
+* 请求参数
+
+| 字段  | 类型    | 是否必须 | 解释         |
+| ---- | ------- | -------- | ---------  |
+| currency_code  | String | 否 | 某个币种的持仓 |
+
+
+* 请求示例
+
+```json
+# Request
+GET https://openapi.ocx.com/api/v2/accounts/all
+# Response
+{
+    "data" : {
+        accounts: [{
+            "currency_code" : "btc",
+            "balance" : "10.0",
+            "locked" : "0.0"
+        }],
+        spot_accounts: [{
+            "currency_code" : "btc",
+            "balance" : "10.0",
+            "locked" : "0.0"
+        }],
+        otc_accounts: [{
+            "currency_code" : "btc",
+            "balance" : "10.0",
+            "locked" : "0.0"
+        }]
+    }
+}
+```
+
+* 返回参数
+
+| 字段           | 类型          | 解释          |
+| ------------- | ------------- | -------------|
+| accounts      | Account Array | 资金帐户      |
+| spot_accounts | Account Array | 币币帐户      |
+| otc_accounts  | Account Array | 法币帐户      |
+
+
+11. `POST /api/v2/accounts/transfer`  个人资产划转
+
+* URL `https://openapi.ocx.com/api/v2/accounts/all`
+* 请求参数
+
+| 字段               | 类型    | 是否必须 | 解释                                                |
+| ------------------| ------- | ------- | -------------------------------------------------- |
+| from_account_type | String  | 是      | 从那个帐户划转 (accounts spot_accounts otc_accounts) |
+| to_account_type   | String  | 是      | 划转到那个帐户 (accounts spot_accounts otc_accounts) |
+| amount            | String  | 是      | 划转数量                                            |
+| currency_code     | String  | 是      | 划转币种                                            |
+
+
+* 请求示例
+
+```json
+# Request
+POST https://openapi.ocx.com/api/v2/accounts/transfer
+# Response
+划转成功
+{
+    "data" : {
+       success: true
+    }
+}
+
+划转失败
+{
+    "data" : {
+       error: {message: 'Balance Not Enough'}
+    }
+}
+```

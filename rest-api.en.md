@@ -350,3 +350,83 @@ JSON Response
     }]
 }
 ```
+
+10. `GET /api/v2/accounts/all`  all assets
+
+* URL `https://openapi.ocx.com/api/v2/accounts/all`
+* Parameters:
+
+| key            | type    | Required | Note       |
+| -------------- | ------- | -------- | ---------  |
+| currency_code  | String  | NO       |            |
+
+
+* example
+
+```json
+# Request
+GET https://openapi.ocx.com/api/v2/accounts/all
+# Response
+{
+    "data" : {
+        accounts: [{
+            "currency_code" : "btc",
+            "balance" : "10.0",
+            "locked" : "0.0"
+        }],
+        spot_accounts: [{
+            "currency_code" : "btc",
+            "balance" : "10.0",
+            "locked" : "0.0"
+        }],
+        otc_accounts: [{
+            "currency_code" : "btc",
+            "balance" : "10.0",
+            "locked" : "0.0"
+        }]
+    }
+}
+```
+
+* Response
+
+| Key           | Type          | Note                          |
+| ------------- | ------------- | ----------------------------- |
+| accounts      | Account Array | Accounts(withdraws/deposits)  |
+| spot_accounts | Account Array | Spot Accounts (trade)         |
+| otc_accounts  | Account Array | Otc Account (otc)             |
+
+
+11. `POST /api/v2/accounts/transfer`  Transfer your assets
+
+* URL `https://openapi.ocx.com/api/v2/accounts/all`
+* Parameters:
+
+| Key               | Type    | Required | Note                                             |
+| ----              | ------- | -------- | -----------------------------------------------  |
+| from_account_type | String  | Y        |  choose in (accounts spot_accounts otc_accounts) |
+| to_account_type   | String  | Y        |  choose in (accounts spot_accounts otc_accounts) |
+| amount            | String  | Y        |                                                  |
+| currency_code     | String  | Y        |                                                  |
+
+
+* example
+
+```json
+# Request
+POST https://openapi.ocx.com/api/v2/accounts/transfer
+# Response
+transfer success
+{
+    "data" : {
+       success: true
+    }
+}
+
+transfer failure
+{
+    "data" : {
+       error: {message: 'Balance Not Enough'}
+    }
+}
+```
